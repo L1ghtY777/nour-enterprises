@@ -1,246 +1,318 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-lang="fr" data-theme="dark">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nour Enterprises</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nour Enterprises</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 
-    :root {
-      --or: #C9A84C;
-      --noir: #0A0A0A;
-      --noir2: #131313;
-      --blanc: #F5F5F0;
-      --gris: #888;
-      --serif: 'Playfair Display', Georgia, serif;
-      --sans: 'Inter', Arial, sans-serif;
-    }
+/* THEMES */
+:root{
+  --or:#C9A84C;--or2:#dbb85a;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',Arial,sans-serif;
+}
+[data-theme="dark"]{
+  --bg:#0A0A0A;--bg2:#111111;--bg3:#1A1A1A;
+  --txt:#F0EDE8;--txt2:#888;--bord:rgba(201,168,76,0.15);
+}
+[data-theme="light"]{
+  --bg:#F8F6F1;--bg2:#FFFFFF;--bg3:#EFEFEA;
+  --txt:#1A1A1A;--txt2:#666;--bord:rgba(0,0,0,0.1);
+}
 
-    html { scroll-behavior: smooth; }
-    body { background: var(--noir); color: var(--blanc); font-family: var(--sans); }
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);transition:background .3s,color .3s;}
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-      background: rgba(10,10,10,0.95);
-      border-bottom: 1px solid rgba(201,168,76,0.2);
-      padding: 1rem 1.5rem;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .nav-brand { font-family: var(--serif); color: var(--or); font-size: 1.1rem; text-decoration: none; }
-    .nav-menu { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-menu a { color: var(--gris); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
-    .nav-menu a:hover { color: var(--or); }
-    @media(max-width:600px){ .nav-menu { display: none; } }
+/* TOPBAR */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.9rem 1.5rem;
+  background:var(--bg);
+  border-bottom:1px solid var(--bord);
+  backdrop-filter:blur(12px);
+}
+.nav-brand{font-family:var(--serif);color:var(--or);font-size:1.1rem;text-decoration:none;font-weight:600;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
+.nav-links a{color:var(--txt2);text-decoration:none;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--or);}
+.nav-controls{display:flex;gap:.6rem;align-items:center;}
+.ctrl-btn{background:transparent;border:1px solid var(--bord);color:var(--txt2);padding:.35rem .7rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;cursor:pointer;font-family:var(--sans);transition:all .2s;}
+.ctrl-btn:hover{color:var(--or);border-color:var(--or);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem;}
+.hamburger span{width:22px;height:2px;background:var(--txt);display:block;transition:all .3s;}
+.mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--bord);z-index:998;padding:1.5rem;}
+.mobile-menu.open{display:block;}
+.mobile-menu a{display:block;color:var(--txt);text-decoration:none;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;padding:.7rem 0;border-bottom:1px solid var(--bord);}
+@media(max-width:700px){.nav-links{display:none;}.hamburger{display:flex;}}
 
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; padding: 5rem 1.5rem 3rem;
-      background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%);
-    }
-    .badge {
-      display: inline-block;
-      border: 1px solid rgba(201,168,76,0.5);
-      color: var(--or); font-size: 0.7rem; letter-spacing: 0.2em;
-      text-transform: uppercase; padding: 0.4rem 1rem; margin-bottom: 2rem;
-    }
-    .hero h1 {
-      font-family: var(--serif); font-size: clamp(2.2rem, 7vw, 4.5rem);
-      font-weight: 400; line-height: 1.15; max-width: 750px; margin-bottom: 1.5rem;
-    }
-    .hero h1 em { color: var(--or); font-style: italic; }
-    .hero p { color: var(--gris); font-size: 1rem; line-height: 1.75; max-width: 500px; margin-bottom: 2.5rem; }
-    .ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:6rem 1.5rem 4rem;
+  background:radial-gradient(ellipse 70% 50% at 50% 40%, rgba(201,168,76,.07) 0%, transparent 70%);
+}
+.hero-logo{
+  width:140px;height:140px;object-fit:contain;
+  border-radius:12px;padding:.8rem;margin-bottom:1.5rem;
+  background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.25);
+}
+.hero-logo-fallback{
+  width:140px;height:140px;border-radius:12px;
+  background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:3rem;color:rgba(201,168,76,.4);
+  margin:0 auto 1.5rem;
+}
+.badge{
+  display:inline-block;border:1px solid rgba(201,168,76,.4);
+  color:var(--or);font-size:.68rem;letter-spacing:.2em;
+  text-transform:uppercase;padding:.4rem 1rem;margin-bottom:1.8rem;
+}
+.hero h1{
+  font-family:var(--serif);font-size:clamp(2.2rem,7vw,4.5rem);
+  font-weight:300;line-height:1.15;max-width:720px;margin-bottom:1.5rem;
+}
+.hero h1 em{color:var(--or);font-style:italic;}
+.hero-sub{color:var(--txt2);font-size:1rem;line-height:1.75;max-width:500px;margin-bottom:2.5rem;}
+.ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
 
-    /* BOUTONS */
-    .btn {
-      display: inline-block; text-decoration: none;
-      padding: 0.8rem 1.8rem; font-family: var(--sans);
-      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-      cursor: pointer; border: none; transition: all 0.25s;
-    }
-    .btn-gold { background: var(--or); color: var(--noir); }
-    .btn-gold:hover { background: #dbb85a; }
-    .btn-ghost { background: transparent; color: var(--or); border: 1px solid var(--or); }
-    .btn-ghost:hover { background: rgba(201,168,76,0.1); }
+/* BOUTONS */
+.btn{display:inline-block;text-decoration:none;padding:.8rem 1.8rem;
+  font-family:var(--sans);font-size:.82rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:all .25s;}
+.btn-or{background:var(--or);color:#fff;}
+.btn-or:hover{background:var(--or2);}
+.btn-outline{background:transparent;color:var(--or);border:1px solid var(--or);}
+.btn-outline:hover{background:rgba(201,168,76,.1);}
 
-    /* SECTIONS */
-    .section { padding: 5rem 1.5rem; max-width: 1000px; margin: 0 auto; }
-    .label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--or); margin-bottom: 0.8rem; }
-    .section h2 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; margin-bottom: 1.2rem; line-height: 1.2; }
-    .section p { color: var(--gris); line-height: 1.8; font-size: 0.95rem; max-width: 600px; }
-    .line { width: 50px; height: 1px; background: var(--or); margin: 1.5rem 0; }
+/* SECTIONS */
+.sec{padding:5rem 1.5rem;max-width:1000px;margin:0 auto;}
+.sec-bg{background:var(--bg2);}
+.sec-bg .sec{background:var(--bg2);}
+.lbl{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:.8rem;}
+.sec h2{font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;margin-bottom:1rem;line-height:1.2;}
+.line{width:50px;height:1px;background:var(--or);margin:1.2rem 0 1.5rem;}
+.corps{color:var(--txt2);line-height:1.8;font-size:.95rem;max-width:620px;}
 
-    /* STATS */
-    .stats { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid rgba(201,168,76,0.15); margin: 3rem 0; }
-    .stat { padding: 2rem 1rem; text-align: center; border-right: 1px solid rgba(201,168,76,0.15); }
-    .stat:last-child { border-right: none; }
-    .stat-n { font-family: var(--serif); font-size: 2.5rem; color: var(--or); }
-    .stat-l { font-size: 0.72rem; color: var(--gris); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.3rem; }
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--bord);margin:3rem 0;}
+.stat{padding:2rem 1rem;text-align:center;border-right:1px solid var(--bord);background:var(--bg2);}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:var(--serif);font-size:2.5rem;color:var(--or);}
+.stat-l{font-size:.7rem;color:var(--txt2);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;}
+@media(max-width:500px){.stats{grid-template-columns:1fr;}.stat{border-right:none;border-bottom:1px solid var(--bord);}.stat:last-child{border-bottom:none;}}
 
-    /* FILIALES */
-    .filiales-bg { background: var(--noir2); padding: 5rem 1.5rem; }
-    .filiales-inner { max-width: 1000px; margin: 0 auto; }
-    .filiales-titre { font-family: var(--serif); font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 400; margin-bottom: 0.5rem; margin-top: 0.5rem; }
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1px; margin-top: 3rem; background: rgba(201,168,76,0.1); }
-    .card {
-      background: var(--noir2); padding: 2.5rem 2rem;
-      border-left: 3px solid transparent; transition: border-color 0.3s, background 0.3s;
-    }
-    .card:hover { border-left-color: var(--or); background: #161616; }
-    .card-icon { font-size: 1.8rem; margin-bottom: 1.2rem; }
-    .card h3 { font-family: var(--serif); font-size: 1.6rem; color: var(--or); margin-bottom: 0.3rem; }
-    .card-sub { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris); margin-bottom: 1rem; }
-    .card p { font-size: 0.88rem; color: var(--gris); line-height: 1.7; margin-bottom: 1.5rem; }
-    .card a { color: var(--or); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 2px; }
-    .card a:hover { border-color: var(--or); }
+/* FILIALES */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--bord);margin-top:3rem;}
+.card{background:var(--bg2);padding:2.5rem 2rem;border-left:3px solid transparent;transition:border-color .3s,background .3s;}
+.card:hover{border-left-color:var(--or);background:var(--bg3);}
+.card-icon{font-size:1.8rem;margin-bottom:1rem;}
+.card h3{font-family:var(--serif);font-size:1.6rem;color:var(--or);margin-bottom:.3rem;}
+.card-sub{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin-bottom:1rem;}
+.card p{font-size:.88rem;color:var(--txt2);line-height:1.7;margin-bottom:1.5rem;}
+.card-link{color:var(--or);text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.3);padding-bottom:2px;transition:border-color .2s;}
+.card-link:hover{border-color:var(--or);}
 
-    /* CITATION */
-    .citation { padding: 5rem 1.5rem; text-align: center; }
-    .citation blockquote { font-family: var(--serif); font-size: clamp(1.3rem, 3.5vw, 2rem); font-style: italic; font-weight: 400; max-width: 650px; margin: 0 auto 1.5rem; line-height: 1.5; }
-    .citation blockquote em { color: var(--or); font-style: normal; }
-    .citation cite { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gris); }
+/* CITATION */
+.citation{padding:5rem 1.5rem;text-align:center;background:radial-gradient(ellipse 60% 70% at 50% 50%, rgba(201,168,76,.05) 0%, transparent 70%);}
+.citation blockquote{font-family:var(--serif);font-size:clamp(1.3rem,3.5vw,2rem);font-style:italic;font-weight:400;max-width:650px;margin:0 auto 1.5rem;line-height:1.5;}
+.citation blockquote em{color:var(--or);font-style:normal;}
+.citation cite{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2);}
 
-    /* FONDATEUR */
-    .fondateur-bg { background: var(--noir2); padding: 5rem 1.5rem; }
-    .fondateur-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    @media(max-width:700px){ .fondateur-inner { grid-template-columns: 1fr; gap: 2rem; } }
-    .fondateur-placeholder {
-      aspect-ratio: 3/4; background: var(--noir);
-      border: 1px solid rgba(201,168,76,0.2);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--serif); font-size: 4rem; color: rgba(201,168,76,0.2);
-    }
-    .fondateur-text .label { margin-bottom: 0.5rem; }
-    .fondateur-text h2 { font-family: var(--serif); font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 400; margin-bottom: 0.4rem; }
-    .fondateur-role { font-size: 0.82rem; color: var(--gris); margin-bottom: 1.5rem; }
-    .fondateur-text p { color: var(--gris); font-size: 0.92rem; line-height: 1.8; margin-bottom: 0.8rem; }
+/* FONDATEUR */
+.fondateur-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+@media(max-width:700px){.fondateur-grid{grid-template-columns:1fr;gap:2rem;}}
+.fondateur-img{aspect-ratio:3/4;background:var(--bg3);border:1px solid var(--bord);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.fondateur-img img{width:100%;height:100%;object-fit:cover;}
+.fondateur-img-placeholder{font-family:var(--serif);font-size:5rem;color:rgba(201,168,76,.2);}
+.fondateur-role{font-size:.82rem;color:var(--txt2);margin-bottom:1.5rem;}
 
-    /* CONTACT */
-    .contact { padding: 5rem 1.5rem; text-align: center; }
-    .contact-inner { max-width: 500px; margin: 0 auto; }
-    .contact h2 { font-family: var(--serif); font-size: clamp(1.8rem,4vw,2.6rem); font-weight: 400; margin-bottom: 1rem; }
-    .contact p { color: var(--gris); line-height: 1.75; margin-bottom: 2.5rem; }
-    .contact-info { margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 0.8rem; }
-    .contact-info span { color: var(--gris); font-size: 0.9rem; }
-    .contact-info a { color: var(--or); text-decoration: none; }
+/* CONTACT */
+.contact-inner{max-width:500px;margin:0 auto;text-align:center;}
+.contact-info{margin:2rem 0;display:flex;flex-direction:column;gap:.8rem;}
+.contact-info span{color:var(--txt2);font-size:.9rem;}
+.contact-info a{color:var(--or);text-decoration:none;}
 
-    /* FOOTER */
-    footer {
-      border-top: 1px solid rgba(201,168,76,0.12);
-      padding: 1.5rem; display: flex;
-      justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;
-    }
-    .footer-brand { font-family: var(--serif); color: var(--or); font-size: 0.95rem; }
-    .footer-copy { font-size: 0.75rem; color: var(--gris); }
-  </style>
+/* FOOTER */
+footer{border-top:1px solid var(--bord);padding:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;background:var(--bg);}
+.footer-brand{font-family:var(--serif);color:var(--or);font-size:.95rem;}
+.footer-copy{font-size:.72rem;color:var(--txt2);}
+
+/* HIDDEN lang */
+[data-lang="en"] .fr{display:none;}
+[data-lang="fr"] .en{display:none;}
+</style>
 </head>
 <body>
 
-<nav>
+<!-- TOPBAR -->
+<nav class="topbar">
   <a class="nav-brand" href="#">NE · Nour Enterprises</a>
-  <ul class="nav-menu">
-    <li><a href="#apropos">À propos</a></li>
-    <li><a href="#filiales">Filiales</a></li>
-    <li><a href="#fondateur">Fondateur</a></li>
+  <ul class="nav-links">
+    <li><a href="#apropos"><span class="fr">À propos</span><span class="en">About</span></a></li>
+    <li><a href="#filiales"><span class="fr">Filiales</span><span class="en">Subsidiaries</span></a></li>
+    <li><a href="#fondateur"><span class="fr">Fondateur</span><span class="en">Founder</span></a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <div class="nav-controls">
+    <button class="ctrl-btn" onclick="toggleLang()" id="lang-btn">EN</button>
+    <button class="ctrl-btn" onclick="toggleTheme()" id="theme-btn">☀️</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#apropos" onclick="toggleMenu()"><span class="fr">À propos</span><span class="en">About</span></a>
+  <a href="#filiales" onclick="toggleMenu()"><span class="fr">Filiales</span><span class="en">Subsidiaries</span></a>
+  <a href="#fondateur" onclick="toggleMenu()"><span class="fr">Fondateur</span><span class="en">Founder</span></a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
 <section class="hero">
-  <span class="badge">🌍 Bénin · Afrique de l'Ouest</span>
-  <h1>L'Innovation au Service d'un <em>Avenir Durable</em></h1>
-  <p>Nour Enterprises conçoit, expérimente et industrialise des solutions concrètes face aux grands défis économiques et sociaux de l'Afrique.</p>
+  <img src="logo-NE.png" alt="Nour Enterprises" class="hero-logo"
+    onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex';"/>
+  <div class="hero-logo-fallback" id="logo-fallback" style="display:none;">NE</div>
+  <span class="badge">🌍 <span class="fr">Bénin · Afrique de l'Ouest</span><span class="en">Benin · West Africa</span></span>
+  <h1><span class="fr">L'Innovation au Service d'un <em>Avenir Durable</em></span><span class="en">Innovation in Service of a <em>Sustainable Future</em></span></h1>
+  <p class="hero-sub fr">Nour Enterprises conçoit, expérimente et industrialise des solutions concrètes face aux grands défis économiques et sociaux de l'Afrique.</p>
+  <p class="hero-sub en">Nour Enterprises designs, experiments and industrializes concrete solutions to Africa's major economic and social challenges.</p>
   <div class="ctas">
-    <a href="#filiales" class="btn btn-gold">Nos filiales</a>
-    <a href="#contact" class="btn btn-ghost">Nous contacter</a>
+    <a href="#filiales" class="btn btn-or"><span class="fr">Nos filiales</span><span class="en">Our subsidiaries</span></a>
+    <a href="#contact" class="btn btn-outline"><span class="fr">Nous contacter</span><span class="en">Contact us</span></a>
   </div>
 </section>
 
+<!-- À PROPOS -->
 <div id="apropos">
-  <div class="section">
-    <p class="label">Qui sommes-nous</p>
-    <h2>Une entreprise de R&D multisectorielle</h2>
+  <div class="sec">
+    <p class="lbl"><span class="fr">Qui sommes-nous</span><span class="en">Who we are</span></p>
+    <h2><span class="fr">Une entreprise de R&D multisectorielle</span><span class="en">A multisectoral R&D company</span></h2>
     <div class="line"></div>
-    <p>Basée à Cotonou, Nour Enterprises est une entreprise privée de Recherche & Développement dédiée à la création de solutions innovantes à impact social et économique positif. Nous fusionnons technologie, inclusion sociale et viabilité économique.</p>
+    <p class="corps fr">Basée à Cotonou, au Bénin, Nour Enterprises est une entreprise privée de Recherche & Développement dédiée à la création de solutions innovantes à impact social et économique positif. Nous fusionnons technologie, inclusion sociale et viabilité économique pour transformer les défis contemporains en opportunités de croissance durable.</p>
+    <p class="corps en">Based in Cotonou, Benin, Nour Enterprises is a private Research & Development company dedicated to creating innovative solutions with positive social and economic impact. We combine technology, social inclusion and economic viability to transform contemporary challenges into sustainable growth opportunities.</p>
     <div class="stats">
-      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Filiales actives</div></div>
-      <div class="stat"><div class="stat-n">2+</div><div class="stat-l">Pays ciblés</div></div>
-      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Made in Africa</div></div>
+      <div class="stat"><div class="stat-n">3</div><div class="stat-l fr">Filiales actives</div><div class="stat-l en">Active subsidiaries</div></div>
+      <div class="stat"><div class="stat-n">2+</div><div class="stat-l fr">Pays ciblés</div><div class="stat-l en">Target countries</div></div>
+      <div class="stat"><div class="stat-n">100%</div><div class="stat-l fr">Made in Africa</div><div class="stat-l en">Made in Africa</div></div>
     </div>
   </div>
 </div>
 
-<div class="filiales-bg" id="filiales">
-  <div class="filiales-inner">
-    <p class="label">Nos filiales</p>
-    <h2 class="filiales-titre">Un écosystème de solutions complémentaires</h2>
+<!-- FILIALES -->
+<div class="sec-bg" id="filiales">
+  <div class="sec">
+    <p class="lbl"><span class="fr">Nos filiales</span><span class="en">Our subsidiaries</span></p>
+    <h2><span class="fr">Un écosystème de solutions complémentaires</span><span class="en">An ecosystem of complementary solutions</span></h2>
     <div class="cards">
       <div class="card">
         <div class="card-icon">🌿</div>
         <h3>LMB</h3>
-        <div class="card-sub">Le Marché Bio</div>
-        <p>Réseau panafricain de mise en relation entre producteurs de produits naturels & biologiques et acheteurs professionnels. Transactions sécurisées, traçables et rentables.</p>
-        <a href="#">Accéder au site LMB →</a>
+        <div class="card-sub"><span class="fr">Le Marché Bio</span><span class="en">The Organic Market</span></div>
+        <p class="fr">Réseau panafricain de mise en relation entre producteurs de produits naturels & biologiques et acheteurs professionnels. Transactions sécurisées, traçables et rentables.</p>
+        <p class="en">Pan-African network connecting natural & organic product producers with professional buyers. Secure, traceable and profitable transactions.</p>
+        <a href="https://lemarchebio-lmb.netlify.app/" target="_blank" class="card-link"><span class="fr">Accéder au site LMB →</span><span class="en">Visit LMB website →</span></a>
       </div>
       <div class="card">
         <div class="card-icon">🌐</div>
         <h3>WCMA</h3>
         <div class="card-sub">World Communication & Marketing Alliance</div>
-        <p>Réseau féminin structuré de communication et marketing terrain. Des ambassadrices déployées dans plusieurs pays pour booster la visibilité des marques et institutions.</p>
-        <a href="#">Accéder au site WCMA →</a>
+        <p class="fr">Réseau féminin structuré de communication et marketing terrain. Des ambassadrices locales déployées dans plusieurs pays pour booster la visibilité des marques et institutions.</p>
+        <p class="en">Structured women's field communication and marketing network. Local ambassadors deployed across multiple countries to boost brand and institutional visibility.</p>
+        <a href="https://wcma-alliance.netlify.app/" target="_blank" class="card-link"><span class="fr">Accéder au site WCMA →</span><span class="en">Visit WCMA website →</span></a>
       </div>
       <div class="card">
         <div class="card-icon">🔒</div>
         <h3>SafeLife</h3>
-        <div class="card-sub">Micro-tâches rémunérées</div>
-        <p>Plateforme innovante de micro-tâches numériques rémunérées, conçue pour l'insertion professionnelle des jeunes dans un cadre juridique sécurisé.</p>
-        <a href="#">Bientôt disponible →</a>
+        <div class="card-sub"><span class="fr">Micro-tâches rémunérées</span><span class="en">Paid micro-tasks</span></div>
+        <p class="fr">Plateforme innovante de micro-tâches numériques rémunérées, conçue pour l'insertion professionnelle des jeunes dans un cadre juridique sécurisé.</p>
+        <p class="en">Innovative paid digital micro-task platform designed for youth professional integration within a secure legal framework.</p>
+        <a href="#" class="card-link"><span class="fr">Bientôt disponible →</span><span class="en">Coming soon →</span></a>
       </div>
     </div>
   </div>
 </div>
 
+<!-- CITATION -->
 <div class="citation">
-  <blockquote>"Priorité à la <em>crédibilité</em> et à la rigueur plutôt qu'à une expansion rapide et désorganisée."</blockquote>
+  <div class="line" style="margin:0 auto 2rem;"></div>
+  <blockquote><span class="fr">"Priorité à la <em>crédibilité</em> et à la rigueur plutôt qu'à une expansion rapide et désorganisée."</span><span class="en">"Priority to <em>credibility</em> and rigor rather than rapid and disorganized expansion."</span></blockquote>
   <cite>Rhude Rhaude Ahouangbo · CEO, Nour Enterprises</cite>
 </div>
 
-<div class="fondateur-bg" id="fondateur">
-  <div class="fondateur-inner">
-    <div class="fondateur-placeholder">RR</div>
-    <div class="fondateur-text">
-      <p class="label">Le fondateur</p>
-      <h2>Rhude Rhaude<br/>Ahouangbo</h2>
-      <p class="fondateur-role">Ingénieur en Biotechnologie · CEO & Fondateur</p>
-      <p>Né en 1996 à Cotonou, Rhude Rhaude Ahouangbo est un ingénieur béninois en biotechnologie, entrepreneur autodidacte et visionnaire. Il a fondé Nour Enterprises avec une conviction : l'Afrique possède toutes les ressources nécessaires pour bâtir ses propres solutions.</p>
-      <p>Sa mission : concevoir des systèmes économiques inclusifs, durables et rentables, capables de générer emploi et revenus pour la jeunesse africaine.</p>
+<!-- FONDATEUR -->
+<div class="sec-bg" id="fondateur">
+  <div class="sec">
+    <div class="fondateur-grid">
+      <div class="fondateur-img">
+        <img src="photo-fondateur.jpg" alt="Rhude Rhaude Ahouangbo"
+          onerror="this.style.display='none';document.getElementById('ph-fallback').style.display='flex';"/>
+        <div class="fondateur-img-placeholder" id="ph-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;">RR</div>
+      </div>
+      <div>
+        <p class="lbl"><span class="fr">Le fondateur</span><span class="en">The founder</span></p>
+        <h2>Rhude Rhaude<br/>Ahouangbo</h2>
+        <p class="fondateur-role"><span class="fr">Ingénieur en Biotechnologie · CEO & Fondateur</span><span class="en">Biotechnology Engineer · CEO & Founder</span></p>
+        <p class="corps fr" style="margin-bottom:1rem;">Né en 1996 à Cotonou, Rhude Rhaude Ahouangbo est un ingénieur béninois en biotechnologie, entrepreneur autodidacte et visionnaire. Il a fondé Nour Enterprises avec une conviction : l'Afrique possède toutes les ressources nécessaires pour bâtir ses propres solutions.</p>
+        <p class="corps en" style="margin-bottom:1rem;">Born in 1996 in Cotonou, Rhude Rhaude Ahouangbo is a Beninese biotechnology engineer, self-taught entrepreneur and visionary. He founded Nour Enterprises with one conviction: Africa has all the resources needed to build its own solutions.</p>
+        <p class="corps fr">Sa mission : concevoir des systèmes économiques inclusifs, durables et rentables, capables de générer emploi et revenus pour la jeunesse africaine.</p>
+        <p class="corps en">His mission: design inclusive, sustainable and profitable economic systems capable of generating employment and income for African youth.</p>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="contact" id="contact">
-  <div class="contact-inner">
-    <p class="label">Nous rejoindre</p>
-    <h2>Parlons de votre projet</h2>
-    <p>Investisseur, partenaire potentiel ou simplement curieux ? Contactez-nous.</p>
-    <div class="contact-info">
-      <span>📧 <a href="mailto:nourenterprise90@gmail.com">nourenterprise90@gmail.com</a></span>
-      <span>📍 Cotonou, Bénin</span>
+<!-- CONTACT -->
+<div id="contact">
+  <div class="sec">
+    <div class="contact-inner">
+      <p class="lbl"><span class="fr">Nous rejoindre</span><span class="en">Get in touch</span></p>
+      <h2><span class="fr">Parlons de votre projet</span><span class="en">Let's talk about your project</span></h2>
+      <div class="line" style="margin:1.2rem auto 1.5rem;"></div>
+      <p class="corps" style="margin-bottom:0;"><span class="fr">Investisseur, partenaire ou curieux ? Contactez-nous.</span><span class="en">Investor, partner or curious? Contact us.</span></p>
+      <div class="contact-info">
+        <span>📧 <a href="mailto:nourenterprise90@gmail.com">nourenterprise90@gmail.com</a></span>
+        <span>📍 Cotonou, Bénin</span>
+      </div>
+      <a href="mailto:nourenterprise90@gmail.com" class="btn btn-or"><span class="fr">Envoyer un message</span><span class="en">Send a message</span></a>
     </div>
-    <a href="mailto:nourenterprise90@gmail.com" class="btn btn-gold">Envoyer un message</a>
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <span class="footer-brand">NE · Nour Enterprises</span>
   <span class="footer-copy">© 2026 Nour Enterprises · Cotonou, Bénin</span>
 </footer>
 
+<script>
+function toggleLang(){
+  const html=document.documentElement;
+  const cur=html.getAttribute('data-lang');
+  const next=cur==='fr'?'en':'fr';
+  html.setAttribute('data-lang',next);
+  document.getElementById('lang-btn').textContent=next==='fr'?'EN':'FR';
+}
+function toggleTheme(){
+  const html=document.documentElement;
+  const cur=html.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀️':'🌙';
+}
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+</script>
 </body>
-</html>
+  </html>
+          
