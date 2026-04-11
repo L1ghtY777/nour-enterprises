@@ -1,680 +1,246 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nour Enterprises – L'Innovation au Service de l'Afrique</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <title>Nour Enterprises</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
     :root {
       --or: #C9A84C;
-      --or-clair: #E8C97A;
       --noir: #0A0A0A;
-      --noir-doux: #111111;
-      --gris: #1A1A1A;
-      --texte: #E8E8E8;
-      --texte-doux: #A0A0A0;
+      --noir2: #131313;
+      --blanc: #F5F5F0;
+      --gris: #888;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', Arial, sans-serif;
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html { scroll-behavior: smooth; }
+    body { background: var(--noir); color: var(--blanc); font-family: var(--sans); }
 
-    body {
-      background: var(--noir);
-      color: var(--texte);
-      font-family: 'Outfit', sans-serif;
-      overflow-x: hidden;
-    }
-
-    /* ─── BARRE DE NAVIGATION ─── */
+    /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2rem;
-      background: rgba(10,10,10,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201,168,76,0.15);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(10,10,10,0.95);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding: 1rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
     }
+    .nav-brand { font-family: var(--serif); color: var(--or); font-size: 1.1rem; text-decoration: none; }
+    .nav-menu { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-menu a { color: var(--gris); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-menu a:hover { color: var(--or); }
+    @media(max-width:600px){ .nav-menu { display: none; } }
 
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--or);
-      letter-spacing: 0.05em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--texte-doux);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover { color: var(--or); }
-
-    /* ─── HERO ─── */
+    /* HERO */
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 5rem 1.5rem 3rem;
+      background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%);
     }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-badge {
+    .badge {
       display: inline-block;
-      border: 1px solid rgba(201,168,76,0.4);
-      color: var(--or);
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 0.4rem 1.2rem;
-      border-radius: 2px;
-      margin-bottom: 2rem;
-      animation: fadeUp 0.8s ease both;
+      border: 1px solid rgba(201,168,76,0.5);
+      color: var(--or); font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; padding: 0.4rem 1rem; margin-bottom: 2rem;
     }
-
     .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 8vw, 5.5rem);
-      font-weight: 300;
-      line-height: 1.1;
-      max-width: 800px;
-      margin-bottom: 1.5rem;
-      animation: fadeUp 0.8s 0.15s ease both;
+      font-family: var(--serif); font-size: clamp(2.2rem, 7vw, 4.5rem);
+      font-weight: 400; line-height: 1.15; max-width: 750px; margin-bottom: 1.5rem;
     }
+    .hero h1 em { color: var(--or); font-style: italic; }
+    .hero p { color: var(--gris); font-size: 1rem; line-height: 1.75; max-width: 500px; margin-bottom: 2.5rem; }
+    .ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
-    .hero h1 span { color: var(--or); font-style: italic; }
-
-    .hero p {
-      font-size: 1rem;
-      color: var(--texte-doux);
-      max-width: 520px;
-      line-height: 1.7;
-      margin-bottom: 3rem;
-      animation: fadeUp 0.8s 0.3s ease both;
+    /* BOUTONS */
+    .btn {
+      display: inline-block; text-decoration: none;
+      padding: 0.8rem 1.8rem; font-family: var(--sans);
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; border: none; transition: all 0.25s;
     }
+    .btn-gold { background: var(--or); color: var(--noir); }
+    .btn-gold:hover { background: #dbb85a; }
+    .btn-ghost { background: transparent; color: var(--or); border: 1px solid var(--or); }
+    .btn-ghost:hover { background: rgba(201,168,76,0.1); }
 
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeUp 0.8s 0.45s ease both;
+    /* SECTIONS */
+    .section { padding: 5rem 1.5rem; max-width: 1000px; margin: 0 auto; }
+    .label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--or); margin-bottom: 0.8rem; }
+    .section h2 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; margin-bottom: 1.2rem; line-height: 1.2; }
+    .section p { color: var(--gris); line-height: 1.8; font-size: 0.95rem; max-width: 600px; }
+    .line { width: 50px; height: 1px; background: var(--or); margin: 1.5rem 0; }
+
+    /* STATS */
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid rgba(201,168,76,0.15); margin: 3rem 0; }
+    .stat { padding: 2rem 1rem; text-align: center; border-right: 1px solid rgba(201,168,76,0.15); }
+    .stat:last-child { border-right: none; }
+    .stat-n { font-family: var(--serif); font-size: 2.5rem; color: var(--or); }
+    .stat-l { font-size: 0.72rem; color: var(--gris); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.3rem; }
+
+    /* FILIALES */
+    .filiales-bg { background: var(--noir2); padding: 5rem 1.5rem; }
+    .filiales-inner { max-width: 1000px; margin: 0 auto; }
+    .filiales-titre { font-family: var(--serif); font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 400; margin-bottom: 0.5rem; margin-top: 0.5rem; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1px; margin-top: 3rem; background: rgba(201,168,76,0.1); }
+    .card {
+      background: var(--noir2); padding: 2.5rem 2rem;
+      border-left: 3px solid transparent; transition: border-color 0.3s, background 0.3s;
     }
+    .card:hover { border-left-color: var(--or); background: #161616; }
+    .card-icon { font-size: 1.8rem; margin-bottom: 1.2rem; }
+    .card h3 { font-family: var(--serif); font-size: 1.6rem; color: var(--or); margin-bottom: 0.3rem; }
+    .card-sub { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris); margin-bottom: 1rem; }
+    .card p { font-size: 0.88rem; color: var(--gris); line-height: 1.7; margin-bottom: 1.5rem; }
+    .card a { color: var(--or); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 2px; }
+    .card a:hover { border-color: var(--or); }
 
-    /* ─── BOUTONS ─── */
-    .btn-or {
-      background: var(--or);
-      color: var(--noir);
-      padding: 0.85rem 2rem;
-      border: none;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      display: inline-block;
+    /* CITATION */
+    .citation { padding: 5rem 1.5rem; text-align: center; }
+    .citation blockquote { font-family: var(--serif); font-size: clamp(1.3rem, 3.5vw, 2rem); font-style: italic; font-weight: 400; max-width: 650px; margin: 0 auto 1.5rem; line-height: 1.5; }
+    .citation blockquote em { color: var(--or); font-style: normal; }
+    .citation cite { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gris); }
+
+    /* FONDATEUR */
+    .fondateur-bg { background: var(--noir2); padding: 5rem 1.5rem; }
+    .fondateur-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    @media(max-width:700px){ .fondateur-inner { grid-template-columns: 1fr; gap: 2rem; } }
+    .fondateur-placeholder {
+      aspect-ratio: 3/4; background: var(--noir);
+      border: 1px solid rgba(201,168,76,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 4rem; color: rgba(201,168,76,0.2);
     }
+    .fondateur-text .label { margin-bottom: 0.5rem; }
+    .fondateur-text h2 { font-family: var(--serif); font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 400; margin-bottom: 0.4rem; }
+    .fondateur-role { font-size: 0.82rem; color: var(--gris); margin-bottom: 1.5rem; }
+    .fondateur-text p { color: var(--gris); font-size: 0.92rem; line-height: 1.8; margin-bottom: 0.8rem; }
 
-    .btn-or:hover { background: var(--or-clair); transform: translateY(-2px); }
+    /* CONTACT */
+    .contact { padding: 5rem 1.5rem; text-align: center; }
+    .contact-inner { max-width: 500px; margin: 0 auto; }
+    .contact h2 { font-family: var(--serif); font-size: clamp(1.8rem,4vw,2.6rem); font-weight: 400; margin-bottom: 1rem; }
+    .contact p { color: var(--gris); line-height: 1.75; margin-bottom: 2.5rem; }
+    .contact-info { margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .contact-info span { color: var(--gris); font-size: 0.9rem; }
+    .contact-info a { color: var(--or); text-decoration: none; }
 
-    .btn-outline {
-      background: transparent;
-      color: var(--or);
-      padding: 0.85rem 2rem;
-      border: 1px solid var(--or);
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.3s;
-      display: inline-block;
-    }
-
-    .btn-outline:hover {
-      background: rgba(201,168,76,0.1);
-      transform: translateY(-2px);
-    }
-
-    /* ─── LIGNE SÉPARATRICE ─── */
-    .divider {
-      width: 60px;
-      height: 1px;
-      background: var(--or);
-      margin: 0 auto 2rem;
-    }
-
-    /* ─── SECTION À PROPOS ─── */
-    .section {
-      padding: 6rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--or);
-      margin-bottom: 1rem;
-    }
-
-    .section h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 400;
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
-    }
-
-    .section p {
-      color: var(--texte-doux);
-      line-height: 1.8;
-      max-width: 640px;
-      font-size: 0.95rem;
-    }
-
-    /* ─── STATS ─── */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: rgba(201,168,76,0.1);
-      margin: 4rem 0;
-      border: 1px solid rgba(201,168,76,0.1);
-    }
-
-    .stat {
-      background: var(--noir);
-      padding: 2.5rem 2rem;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
-      color: var(--or);
-      font-weight: 300;
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.78rem;
-      color: var(--texte-doux);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-top: 0.5rem;
-    }
-
-    /* ─── FILIALES ─── */
-    .filiales {
-      padding: 6rem 2rem;
-      background: var(--noir-doux);
-    }
-
-    .filiales-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .filiales-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2px;
-      margin-top: 4rem;
-      background: rgba(201,168,76,0.08);
-    }
-
-    .filiale-card {
-      background: var(--noir-doux);
-      padding: 3rem 2.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
-    }
-
-    .filiale-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px;
-      height: 0;
-      background: var(--or);
-      transition: height 0.4s ease;
-    }
-
-    .filiale-card:hover::before { height: 100%; }
-    .filiale-card:hover { background: #141414; }
-
-    .filiale-icon {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .filiale-nom {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      color: var(--or);
-      margin-bottom: 0.5rem;
-    }
-
-    .filiale-sous-titre {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--texte-doux);
-      margin-bottom: 1.2rem;
-    }
-
-    .filiale-desc {
-      font-size: 0.9rem;
-      color: var(--texte-doux);
-      line-height: 1.7;
-      margin-bottom: 2rem;
-    }
-
-    .filiale-lien {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--or);
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-bottom: 1px solid rgba(201,168,76,0.3);
-      padding-bottom: 2px;
-      transition: border-color 0.3s, gap 0.3s;
-    }
-
-    .filiale-lien:hover {
-      border-color: var(--or);
-      gap: 0.8rem;
-    }
-
-    /* ─── VISION ─── */
-    .vision {
-      padding: 7rem 2rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .vision::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,0.05) 0%, transparent 70%);
-    }
-
-    .vision-inner { position: relative; max-width: 700px; margin: 0 auto; }
-
-    .vision blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.4;
-      color: var(--texte);
-      margin-bottom: 2rem;
-    }
-
-    .vision blockquote span { color: var(--or); }
-
-    .vision-auteur {
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--texte-doux);
-    }
-
-    /* ─── FONDATEUR ─── */
-    .fondateur {
-      padding: 6rem 2rem;
-      background: var(--noir-doux);
-    }
-
-    .fondateur-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-
-    .fondateur-photo {
-      aspect-ratio: 3/4;
-      background: var(--gris);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(201,168,76,0.15);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .fondateur-photo::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 40%;
-      background: linear-gradient(transparent, rgba(10,10,10,0.6));
-    }
-
-    .photo-placeholder {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5rem;
-      color: rgba(201,168,76,0.2);
-      font-weight: 300;
-    }
-
-    .fondateur-titre {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--or);
-      margin-bottom: 1rem;
-    }
-
-    .fondateur h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 400;
-      margin-bottom: 0.5rem;
-    }
-
-    .fondateur-role {
-      font-size: 0.85rem;
-      color: var(--texte-doux);
-      margin-bottom: 2rem;
-      letter-spacing: 0.05em;
-    }
-
-    .fondateur p {
-      color: var(--texte-doux);
-      line-height: 1.8;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-
-    /* ─── CONTACT ─── */
-    .contact {
-      padding: 6rem 2rem;
-      text-align: center;
-    }
-
-    .contact-inner { max-width: 600px; margin: 0 auto; }
-
-    .contact h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 400;
-      margin-bottom: 1rem;
-    }
-
-    .contact p {
-      color: var(--texte-doux);
-      margin-bottom: 3rem;
-      line-height: 1.7;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 3rem;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-      color: var(--texte-doux);
-      font-size: 0.9rem;
-    }
-
-    .contact-item a {
-      color: var(--or);
-      text-decoration: none;
-    }
-
-    /* ─── FOOTER ─── */
+    /* FOOTER */
     footer {
-      padding: 2rem;
-      border-top: 1px solid rgba(201,168,76,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
+      border-top: 1px solid rgba(201,168,76,0.12);
+      padding: 1.5rem; display: flex;
+      justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;
     }
-
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      color: var(--or);
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .footer-copy {
-      font-size: 0.78rem;
-      color: var(--texte-doux);
-    }
-
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-      .fondateur-inner {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      .fondateur-photo {
-        aspect-ratio: 16/9;
-        max-height: 280px;
-      }
-    }
+    .footer-brand { font-family: var(--serif); color: var(--or); font-size: 0.95rem; }
+    .footer-copy { font-size: 0.75rem; color: var(--gris); }
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-logo">NE · Nour Enterprises</div>
-    <ul class="nav-links">
-      <li><a href="#apropos">À Propos</a></li>
-      <li><a href="#filiales">Nos Filiales</a></li>
-      <li><a href="#fondateur">Le Fondateur</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<nav>
+  <a class="nav-brand" href="#">NE · Nour Enterprises</a>
+  <ul class="nav-menu">
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#filiales">Filiales</a></li>
+    <li><a href="#fondateur">Fondateur</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <span class="hero-badge">🌍 Bénin · Afrique de l'Ouest</span>
-    <h1>L'Innovation au Service d'un <span>Avenir Durable</span></h1>
-    <p>Nour Enterprises conçoit, expérimente et industrialise des solutions concrètes face aux grands défis économiques et sociaux de l'Afrique.</p>
-    <div class="hero-ctas">
-      <a href="#filiales" class="btn-or">Découvrir nos filiales</a>
-      <a href="#contact" class="btn-outline">Nous contacter</a>
+<section class="hero">
+  <span class="badge">🌍 Bénin · Afrique de l'Ouest</span>
+  <h1>L'Innovation au Service d'un <em>Avenir Durable</em></h1>
+  <p>Nour Enterprises conçoit, expérimente et industrialise des solutions concrètes face aux grands défis économiques et sociaux de l'Afrique.</p>
+  <div class="ctas">
+    <a href="#filiales" class="btn btn-gold">Nos filiales</a>
+    <a href="#contact" class="btn btn-ghost">Nous contacter</a>
+  </div>
+</section>
+
+<div id="apropos">
+  <div class="section">
+    <p class="label">Qui sommes-nous</p>
+    <h2>Une entreprise de R&D multisectorielle</h2>
+    <div class="line"></div>
+    <p>Basée à Cotonou, Nour Enterprises est une entreprise privée de Recherche & Développement dédiée à la création de solutions innovantes à impact social et économique positif. Nous fusionnons technologie, inclusion sociale et viabilité économique.</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Filiales actives</div></div>
+      <div class="stat"><div class="stat-n">2+</div><div class="stat-l">Pays ciblés</div></div>
+      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Made in Africa</div></div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- À PROPOS -->
-  <section class="section" id="apropos">
-    <div class="reveal">
-      <p class="section-label">Qui sommes-nous</p>
-      <h2>Une entreprise de R&D<br/>multisectorielle</h2>
-      <div class="divider"></div>
-      <p>Basée à Cotonou, au Bénin, Nour Enterprises est une entreprise privée de Recherche & Développement dédiée à la création de solutions innovantes qui génèrent un impact social et économique positif. Nous transformons les défis contemporains en opportunités de croissance durable, en alliant technologie, inclusion sociale et rentabilité.</p>
-    </div>
-
-    <div class="stats reveal">
-      <div class="stat">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Filiales actives</div>
+<div class="filiales-bg" id="filiales">
+  <div class="filiales-inner">
+    <p class="label">Nos filiales</p>
+    <h2 class="filiales-titre">Un écosystème de solutions complémentaires</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🌿</div>
+        <h3>LMB</h3>
+        <div class="card-sub">Le Marché Bio</div>
+        <p>Réseau panafricain de mise en relation entre producteurs de produits naturels & biologiques et acheteurs professionnels. Transactions sécurisées, traçables et rentables.</p>
+        <a href="#">Accéder au site LMB →</a>
       </div>
-      <div class="stat">
-        <div class="stat-number">2+</div>
-        <div class="stat-label">Pays ciblés</div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <h3>WCMA</h3>
+        <div class="card-sub">World Communication & Marketing Alliance</div>
+        <p>Réseau féminin structuré de communication et marketing terrain. Des ambassadrices déployées dans plusieurs pays pour booster la visibilité des marques et institutions.</p>
+        <a href="#">Accéder au site WCMA →</a>
       </div>
-      <div class="stat">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Africain & fier</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FILIALES -->
-  <section class="filiales" id="filiales">
-    <div class="filiales-inner">
-      <div class="reveal">
-        <p class="section-label">Nos filiales</p>
-        <h2>Un écosystème de solutions<br/>complémentaires</h2>
-      </div>
-
-      <div class="filiales-grid reveal">
-
-        <!-- LMB -->
-        <div class="filiale-card">
-          <div class="filiale-icon">🌿</div>
-          <div class="filiale-nom">LMB</div>
-          <div class="filiale-sous-titre">Le Marché Bio</div>
-          <p class="filiale-desc">Réseau panafricain de mise en relation entre producteurs de produits naturels & biologiques et acheteurs professionnels. Un tiers de confiance pour des transactions sécurisées, traçables et rentables.</p>
-          <a href="#" class="filiale-lien">Accéder au site LMB →</a>
-        </div>
-
-        <!-- WCMA -->
-        <div class="filiale-card">
-          <div class="filiale-icon">🌐</div>
-          <div class="filiale-nom">WCMA</div>
-          <div class="filiale-sous-titre">World Communication & Marketing Alliance</div>
-          <p class="filiale-desc">Réseau féminin structuré de communication et marketing terrain. Des ambassadrices locales déployées dans plusieurs pays pour booster la visibilité des marques, TPE et institutions.</p>
-          <a href="#" class="filiale-lien">Accéder au site WCMA →</a>
-        </div>
-
-        <!-- SafeLife -->
-        <div class="filiale-card">
-          <div class="filiale-icon">🔒</div>
-          <div class="filiale-nom">SafeLife</div>
-          <div class="filiale-sous-titre">Micro-tâches rémunérées</div>
-          <p class="filiale-desc">Plateforme innovante de micro-tâches numériques rémunérées, conçue pour l'insertion professionnelle des jeunes dans un cadre juridique sécurisé.</p>
-          <a href="#" class="filiale-lien">Bientôt disponible →</a>
-        </div>
-
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <h3>SafeLife</h3>
+        <div class="card-sub">Micro-tâches rémunérées</div>
+        <p>Plateforme innovante de micro-tâches numériques rémunérées, conçue pour l'insertion professionnelle des jeunes dans un cadre juridique sécurisé.</p>
+        <a href="#">Bientôt disponible →</a>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- VISION -->
-  <section class="vision">
-    <div class="vision-inner reveal">
-      <div class="divider"></div>
-      <blockquote>
-        "Priorité à la <span>crédibilité</span> et à la rigueur plutôt qu'à une expansion rapide et désorganisée."
-      </blockquote>
-      <div class="vision-auteur">Rhude Rhaude Ahouangbo · CEO, Nour Enterprises</div>
+<div class="citation">
+  <blockquote>"Priorité à la <em>crédibilité</em> et à la rigueur plutôt qu'à une expansion rapide et désorganisée."</blockquote>
+  <cite>Rhude Rhaude Ahouangbo · CEO, Nour Enterprises</cite>
+</div>
+
+<div class="fondateur-bg" id="fondateur">
+  <div class="fondateur-inner">
+    <div class="fondateur-placeholder">RR</div>
+    <div class="fondateur-text">
+      <p class="label">Le fondateur</p>
+      <h2>Rhude Rhaude<br/>Ahouangbo</h2>
+      <p class="fondateur-role">Ingénieur en Biotechnologie · CEO & Fondateur</p>
+      <p>Né en 1996 à Cotonou, Rhude Rhaude Ahouangbo est un ingénieur béninois en biotechnologie, entrepreneur autodidacte et visionnaire. Il a fondé Nour Enterprises avec une conviction : l'Afrique possède toutes les ressources nécessaires pour bâtir ses propres solutions.</p>
+      <p>Sa mission : concevoir des systèmes économiques inclusifs, durables et rentables, capables de générer emploi et revenus pour la jeunesse africaine.</p>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- FONDATEUR -->
-  <section class="fondateur" id="fondateur">
-    <div class="fondateur-inner">
-      <div class="fondateur-photo reveal">
-        <div class="photo-placeholder">RR</div>
-      </div>
-      <div class="reveal">
-        <p class="fondateur-titre">Le fondateur</p>
-        <h2>Rhude Rhaude<br/>Ahouangbo</h2>
-        <p class="fondateur-role">Ingénieur en Biotechnologie · CEO & Fondateur</p>
-        <p>Né en 1996 à Cotonou, Rhude Rhaude Ahouangbo est un ingénieur béninois en biotechnologie, entrepreneur autodidacte et visionnaire. Il a fondé Nour Enterprises avec une conviction simple : l'Afrique possède toutes les ressources nécessaires pour bâtir ses propres solutions.</p>
-        <p>Sa mission est de concevoir des systèmes économiques inclusifs, durables et rentables, capables de générer emploi et revenus pour la jeunesse africaine.</p>
-      </div>
+<div class="contact" id="contact">
+  <div class="contact-inner">
+    <p class="label">Nous rejoindre</p>
+    <h2>Parlons de votre projet</h2>
+    <p>Investisseur, partenaire potentiel ou simplement curieux ? Contactez-nous.</p>
+    <div class="contact-info">
+      <span>📧 <a href="mailto:nourenterprise90@gmail.com">nourenterprise90@gmail.com</a></span>
+      <span>📍 Cotonou, Bénin</span>
     </div>
-  </section>
+    <a href="mailto:nourenterprise90@gmail.com" class="btn btn-gold">Envoyer un message</a>
+  </div>
+</div>
 
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="contact-inner reveal">
-      <p class="section-label">Nous rejoindre</p>
-      <h2>Parlons de votre projet</h2>
-      <p>Vous êtes investisseur, partenaire potentiel ou vous souhaitez en savoir plus sur l'écosystème Nour Enterprises ? Contactez-nous.</p>
-      <div class="contact-info">
-        <div class="contact-item">
-          📧 <a href="mailto:nourenterprise90@gmail.com">nourenterprise90@gmail.com</a>
-        </div>
-        <div class="contact-item">
-          📍 Cotonou, Bénin
-        </div>
-      </div>
-      <a href="mailto:nourenterprise90@gmail.com" class="btn-or">Envoyer un message</a>
-    </div>
-  </section>
+<footer>
+  <span class="footer-brand">NE · Nour Enterprises</span>
+  <span class="footer-copy">© 2026 Nour Enterprises · Cotonou, Bénin</span>
+</footer>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">NE · Nour Enterprises</div>
-    <div class="footer-copy">© 2026 Nour Enterprises · Tous droits réservés · Cotonou, Bénin</div>
-  </footer>
-
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Révélation au scroll
-    const reveals = document.querySelectorAll('.reve
+</body>
+</html>
